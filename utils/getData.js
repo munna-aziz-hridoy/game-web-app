@@ -14,7 +14,7 @@ const getData = async (param, token) => {
     url,
     method: "POST",
     headers,
-    data: "fields *,screenshots.image_id,cover.image_id,platforms.name,genres.name,game_modes.name,similar_games.id; limit 5;",
+    data: "fields *,screenshots.image_id,cover.image_id,platforms.name,genres.name,game_modes.name,similar_games.id; limit 100;",
   });
 
   return data;
