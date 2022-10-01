@@ -4,7 +4,8 @@ import { config } from "dotenv";
 import bodyParser from "body-parser";
 import setToken from "./middleware/setToken.js";
 import gamesRoute from "./routes/games.js";
-import companyRoute from "./routes/company.js";
+import userRoute from "./routes/user.js";
+
 config();
 
 const app = express();
@@ -16,7 +17,7 @@ app.use(cors());
 const run = () => {
   try {
     app.use("/api/v1/games", setToken, gamesRoute);
-    app.use("/api/v1/company", setToken, companyRoute);
+    app.use("/api/v1/user", userRoute);
   } catch (error) {
     res.status(501).send({ message: "internel server error", error });
   }

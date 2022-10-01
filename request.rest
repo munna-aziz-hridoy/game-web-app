@@ -1,0 +1,19 @@
+POST http://localhost:5000/api/v1/user/register-user
+Content-Type: application/json
+
+{
+    "userName": "Munna",
+    "email": "munna@gmail.com",
+    "password": "password"
+}
+
+###
+
+POST http://localhost:5000/api/v1/user/login-user
+Content-Type: application/json
+
+{
+    "userName": "Munna",
+    "email": "munna@gmail.com",
+    "password": "password"
+}

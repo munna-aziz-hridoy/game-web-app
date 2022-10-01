@@ -10,7 +10,6 @@ export const allGamesController = async (req, res) => {
     const games = await getData("games", token);
 
     const data = games?.map((game) => {
-      console.log(game);
       const { cover, first_release_date, screenshots, ...rest } = game;
 
       const gameData = {
