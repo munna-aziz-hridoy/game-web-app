@@ -29,7 +29,7 @@ const getData = async (param, token, limit = 0, offset = 0, id) => {
   if (limit === 0) {
     return data;
   } else {
-    const paginatedData = data.splice(offset, limit);
+    const paginatedData = data.splice(pageOffset, limit);
     return paginatedData;
   }
 };

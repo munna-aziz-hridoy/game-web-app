@@ -9,8 +9,8 @@ config();
 
 export const allGamesController = async (req, res) => {
   const token = res.accessToken;
-  const offset = parseFloat(req.query.offset);
-  const limit = parseFloat(req.query.limit);
+  const offset = parseFloat(req.query.offset) || 0;
+  const limit = parseFloat(req.query.limit) || 0;
 
   try {
     const games = await getData("games", token, limit, offset);
@@ -51,8 +51,8 @@ export const singleGameController = async (req, res) => {
 export const platformGamesController = async (req, res) => {
   const token = res.accessToken;
   const platformID = parseFloat(req.query.id);
-  const offset = parseFloat(req.query.offset);
-  const limit = parseFloat(req.query.limit);
+  const offset = parseFloat(req.query.offset) || 0;
+  const limit = parseFloat(req.query.limit) || 0;
 
   try {
     const allGames = await getData("games", token, 500, 0);
@@ -80,8 +80,8 @@ export const genresGamesController = async (req, res) => {
   const token = res.accessToken;
   const platfromId = parseFloat(req.query.id);
   const gernresId = parseFloat(req.query.genresId);
-  const offset = parseFloat(req.query.offset);
-  const limit = parseFloat(req.query.limit);
+  const offset = parseFloat(req.query.offset) || 0;
+  const limit = parseFloat(req.query.limit) || 0;
 
   try {
     const allGames = await getData("games", token, 500, 0);
