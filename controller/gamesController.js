@@ -34,7 +34,7 @@ export const singleGameController = async (req, res) => {
   const token = res.accessToken;
 
   try {
-    const singleGame = await getData("games", token, null, null, id);
+    const singleGame = await getData("games", token, 0, 0, id);
 
     if (singleGame) {
       const data = getModifiedData(singleGame[0]);
