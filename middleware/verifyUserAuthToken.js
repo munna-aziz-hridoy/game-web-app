@@ -2,19 +2,19 @@ import jwt from "jsonwebtoken";
 import tokenModel from "../model/tokenModel.js";
 
 const verifyUserAuthToken = async (req, res, next) => {
-  const accessTokenBearer = req.headers["Authorization"];
-  const refreshTokenBearer = req.body.refreshToken;
+  const accessTokenBearer = req.headers.Authorization;
 
-  const accessToken = accessTokenBearer.split(" ")[1];
-  const refreshToken = refreshTokenBearer.split(" ")[1];
+  const refreshToken = req.body.refreshToken;
 
-  if (!accessToken && !refreshToken)
+  if (!accessTokenBearer && !refreshToken)
     return res.status(401).send({ message: "unauthorized user" });
+
+  const accessToken = accessTokenBearer?.split(" ")[1];
 
   if (accessToken) {
     jwt.verify(accessToken, process.env.ACCESS_TOKEN, (err, decoded) => {
       if (err) return res.status(401).send({ message: "unauthorized user" });
-      res.decoded = decoded;
+      req.decoded = decoded;
       next();
       return;
     });
@@ -24,7 +24,7 @@ const verifyUserAuthToken = async (req, res, next) => {
     if (!exists) return res.status(401).send({ message: "unauthorized user" });
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, decoded) => {
       if (err) return res.status(401).send({ message: "unauthorized user" });
-      res.decoded = decoded;
+      req.decoded = decoded;
       res.newAccessToken = jwt.sign(
         { email: req.body.email },
         process.env.ACCESS_TOKEN

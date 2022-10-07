@@ -1,6 +1,12 @@
 const getModifiedData = (data) => {
   const { cover, first_release_date, screenshots, ...rest } = data;
 
+  const generatePrice = () => {
+    return Math.floor(Math.random() * (60 - 40 + 1) + 40);
+  };
+
+  const randomPrice = generatePrice();
+
   const modifiedData = {
     ...rest,
     cover:
@@ -16,6 +22,7 @@ const getModifiedData = (data) => {
         );
       }),
     first_release_date: new Date(first_release_date * 1000),
+    price: randomPrice,
   };
 
   return modifiedData;

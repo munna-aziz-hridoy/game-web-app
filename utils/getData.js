@@ -2,7 +2,7 @@ import axios from "axios";
 import { config } from "dotenv";
 config();
 
-const getData = async (param, token, limit = 0, offset = 0, id) => {
+const getData = async (param, token, limit = 0, offset = 0, id, genre) => {
   const url = `${process.env.GET_URL}/${param}`;
 
   const pageOffset = offset * limit;
