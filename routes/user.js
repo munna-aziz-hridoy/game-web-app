@@ -5,6 +5,9 @@ import {
   updateUserController,
   checkUserController,
 } from "../controller/userController.js";
+
+import { paypalController } from "../controller/paypalController.js";
+
 import verifyUserAuthToken from "../middleware/verifyUserAuthToken.js";
 
 const router = Router();
@@ -13,5 +16,6 @@ router.route("/register-user").post(registerNewUserController);
 router.route("/login-user").post(loginUserController);
 router.patch("/update-user", verifyUserAuthToken, updateUserController);
 router.post("/check-user", verifyUserAuthToken, checkUserController);
+router.post("/payment", verifyUserAuthToken, paypalController);
 
 export default router;
