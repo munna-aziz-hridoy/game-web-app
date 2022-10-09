@@ -76,6 +76,8 @@ export const platformGamesController = async (req, res) => {
   }
 };
 
+// get genres wise game data
+
 export const genresGamesController = async (req, res) => {
   const token = res.accessToken;
   const platfromId = parseFloat(req.query.id);

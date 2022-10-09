@@ -95,11 +95,13 @@ export const checkUserController = async (req, res) => {
     }
     return res
       .status(201)
-      .send({ success: true, message: "User found", email: exists?.email });
+      .send({ success: true, message: "User found", user: email });
   } catch (error) {
     res.status(501).send({ message: "internel server error", error });
   }
 };
+
+// update user information
 
 export const updateUserController = async (req, res) => {
   const {

@@ -11,6 +11,7 @@ const dbConnection = new Promise((resolve, reject) => {
       resolve({ message: "Database is connected" });
     });
   } catch (error) {
+    console.log(error);
     reject({
       message: "Something went wrong while connecting database",
       error,

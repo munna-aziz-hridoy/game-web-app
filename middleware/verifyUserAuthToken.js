@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import tokenModel from "../model/tokenModel.js";
 
 const verifyUserAuthToken = async (req, res, next) => {
-  const accessTokenBearer = req.headers.Authorization;
+  const accessTokenBearer = req.headers["Authorization"];
 
   const refreshToken = req.body.refreshToken;
 
@@ -25,11 +25,13 @@ const verifyUserAuthToken = async (req, res, next) => {
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, decoded) => {
       if (err) return res.status(401).send({ message: "unauthorized user" });
       req.decoded = decoded;
+
       res.newAccessToken = jwt.sign(
         { email: req.body.email },
         process.env.ACCESS_TOKEN
       );
       next();
+
       return;
     });
   }

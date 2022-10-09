@@ -1,5 +1,7 @@
 import getPlatformData from "../utils/getPlatformData.js";
 
+// get all platform data
+
 export const getAllPlatformController = async (req, res) => {
   const token = res.accessToken;
 
